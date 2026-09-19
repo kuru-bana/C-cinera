@@ -1,0 +1,98 @@
+.cinera-settings-button {
+  position: fixed;
+  z-index: 120;
+  right: 24px;
+  bottom: 24px;
+  display: grid;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: #dc2626;
+  color: #fff;
+  cursor: pointer;
+  line-height: 1;
+  box-shadow: 0 8px 24px rgba(0,0,0,.42), 0 0 0 1px rgba(255,255,255,.16);
+  transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+
+.cinera-settings-button svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.cinera-settings-button:hover,
+.cinera-settings-button[aria-expanded="true"] {
+  background: #ef4444;
+  box-shadow: 0 10px 28px rgba(0,0,0,.5), 0 0 0 3px rgba(220,38,38,.22);
+}
+
+.cinera-settings-button[aria-expanded="true"] {
+  transform: rotate(24deg);
+}
+
+.cinera-settings-panel {
+  position: fixed;
+  z-index: 110;
+  right: 24px;
+  bottom: 78px;
+  width: min(300px, calc(100vw - 32px));
+  padding: 16px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 14px;
+  background: rgba(11,15,21,.97);
+  box-shadow: 0 24px 70px -20px rgba(0,0,0,.9);
+  color: #eef1f6;
+  backdrop-filter: blur(20px);
+}
+
+.cinera-settings-panel[hidden] {
+  display: none;
+}
+
+.cinera-settings-title {
+  margin: 0 0 12px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.cinera-settings-label {
+  display: grid;
+  gap: 7px;
+  color: #8a94a6;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.cinera-settings-select {
+  width: 100%;
+  height: 40px;
+  border: 1px solid rgba(255,255,255,.13);
+  border-radius: 9px;
+  padding: 0 10px;
+  outline: 0;
+  background: rgba(5,7,10,.9);
+  color: #eef1f6;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.cinera-settings-select:focus {
+  border-color: #dc2626;
+}
+
+@media (max-width: 720px) {
+  .cinera-settings-button {
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .cinera-settings-panel {
+    right: 16px;
+    bottom: 70px;
+  }
+}

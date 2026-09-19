@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: cinera
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /
+    envVars:
+      - key: SESSION_SECRET
+        generateValue: true

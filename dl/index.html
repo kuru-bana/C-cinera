@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="no-referrer" />
+    <title>Stream Source / Downloader</title>
+    <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml" />
+    <link rel="stylesheet" href="/dl/css/styles.css" />
+  </head>
+  <body>
+    <main>
+      <header class="site-header">
+        <a class="brand" href="/" aria-label="Stream Source ホーム">
+          <span class="brand-mark">S</span>
+          <span>STREAM SOURCE</span>
+        </a>
+          <span class="status">
+            <i aria-hidden="true"></i>
+            DOWNLOAD READY
+          </span>
+      </header>
+
+      <section class="hero">
+        <p class="eyebrow">SERVER-SIDE DOWNLOAD</p>
+        <h1>IDから、<br /><span>保存する。</span></h1>
+        <p class="lead">作品IDを入力してソースを取得し、保存したい画質を選んでください。まずサーバーで保存した動画を画面で確認し、ファイル名を入力してからダウンロードします。</p>
+      </section>
+
+      <section class="search-card" aria-labelledby="download-search-title">
+        <div class="card-heading">
+          <div>
+            <p class="step">01 / SELECT WORK</p>
+            <h2 id="download-search-title">作品を指定</h2>
+          </div>
+          <span class="card-heading-note">TMDB ID</span>
+        </div>
+        <form id="download-form">
+          <div class="type-switch" role="radiogroup" aria-label="メディア種別">
+            <label><input type="radio" name="mediaType" value="movie" checked /><span>MOVIE</span></label>
+            <label><input type="radio" name="mediaType" value="tv" /><span>TV</span></label>
+          </div>
+          <label class="field main-field">
+            <span>TMDB ID</span>
+            <input id="media-id" name="mediaId" inputmode="numeric" pattern="[0-9]+" placeholder="例: 550" required />
+          </label>
+          <div id="tv-fields" class="tv-fields" hidden>
+            <label class="field">
+              <span>SEASON</span>
+              <input name="seasonId" inputmode="numeric" min="0" value="1" type="number" />
+            </label>
+            <label class="field">
+              <span>EPISODE</span>
+              <input name="episodeId" inputmode="numeric" min="1" value="1" type="number" />
+            </label>
+          </div>
+          <button id="lookup-button" type="submit">
+            <span>ソースを取得</span>
+            <b aria-hidden="true">→</b>
+          </button>
+        </form>
+        <p id="lookup-error" class="error" role="alert" hidden></p>
+      </section>
+
+      <section id="download-result" class="download-card" hidden>
+        <div class="card-heading">
+          <div>
+            <p class="step">02 / PREPARE</p>
+            <h2 id="media-title">作品情報</h2>
+          </div>
+          <p id="media-meta" class="media-meta"></p>
+        </div>
+        <div class="media-summary">
+          <img id="media-poster" alt="" />
+          <div>
+            <p id="media-episode" class="media-episode"></p>
+            <p id="media-overview" class="overview"></p>
+          </div>
+        </div>
+        <div class="download-body">
+          <div>
+            <span class="section-label">DOWNLOAD QUALITY</span>
+            <div id="quality-buttons" class="quality-buttons" role="group" aria-label="ダウンロード画質"></div>
+          </div>
+          <button id="download-action" class="download-action" type="button" disabled>
+            <span>保存して再生</span>
+            <b aria-hidden="true">↓</b>
+          </button>
+          <p class="download-note">このボタンではまだ端末へのダウンロードは始まりません。サーバーでMP4を作成してから、下のプレイヤーで再生します。</p>
+          <p id="download-status" class="download-status" role="status" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <section id="preview-card" class="preview-card" hidden>
+        <div class="card-heading">
+          <div>
+            <p class="step">03 / PREVIEW</p>
+            <h2>保存済み動画を確認</h2>
+          </div>
+          <p class="media-meta">SERVER FILE</p>
+        </div>
+        <div class="preview-body">
+          <video id="prepared-video" controls playsinline preload="metadata"></video>
+          <div class="filename-row">
+            <label class="field" for="filename">
+              <span>FILE NAME</span>
+              <input id="filename" type="text" maxlength="100" placeholder="ファイル名を入力" />
+            </label>
+            <button id="file-download-action" class="file-download-action" type="button" disabled>
+              <span>ダウンロードを開始</span>
+              <b aria-hidden="true">↓</b>
+            </button>
+          </div>
+          <p id="file-download-status" class="download-status" role="status" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <footer><span>STREAM SOURCE</span><span>SERVER-SIDE MP4</span></footer>
+    </main>
+
+    <script src="/dl/js/script.js" defer></script>
+  </body>
+</html>

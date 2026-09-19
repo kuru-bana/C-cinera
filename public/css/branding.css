@@ -1,0 +1,7 @@
+.choco-brand-mark {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
